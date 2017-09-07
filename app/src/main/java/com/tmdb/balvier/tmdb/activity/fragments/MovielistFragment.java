@@ -124,7 +124,6 @@ public class MovielistFragment extends Fragment {
     };
 
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onListItemClicked();
     }
 }

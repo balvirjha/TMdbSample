@@ -110,7 +110,6 @@ public class MovieDetailFragment extends Fragment {
     }
 
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onLoadDetailPage(MovieDetailResponse.MovieDetailClass movieDetailResponse);
     }
 }
