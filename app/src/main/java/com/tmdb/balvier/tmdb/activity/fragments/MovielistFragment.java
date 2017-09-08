@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -29,13 +28,9 @@ public class MovielistFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private RecyclerView movieRecyclerView;
-    MovieAdapter mAdapter;
-    View mRoot;
-    List<MovieListResponse.Result> resultListMovies;
-
-    public MovielistFragment() {
-
-    }
+    private MovieAdapter mAdapter;
+    private View mRoot;
+    private List<MovieListResponse.Result> resultListMovies;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,7 +57,7 @@ public class MovielistFragment extends Fragment {
         }
     }
 
-    void showMovies() {
+    private void showMovies() {
         movieRecyclerView = (RecyclerView) mRoot.findViewById(R.id.recycler_view);
         mAdapter = new MovieAdapter(resultListMovies, getActivity(), movieRecyclerView);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
@@ -102,7 +97,7 @@ public class MovielistFragment extends Fragment {
         mListener = null;
     }
 
-    public BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
 
         @Override
         public void onReceive(Context context, Intent intent) {

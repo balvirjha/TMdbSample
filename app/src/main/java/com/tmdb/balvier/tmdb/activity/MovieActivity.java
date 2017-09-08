@@ -22,9 +22,9 @@ import retrofit2.Response;
 public class MovieActivity extends AppCompatActivity implements MovielistFragment.OnFragmentInteractionListener,
         MoviePresenter.MovieListResponseCallback, MovieDetailFragment.OnFragmentInteractionListener {
 
-    ProgressBar progressbar;
-    MovieListResponse resultMovies;
-    MovieDetailResponse.MovieDetailClass movieDetailResponse;
+    private ProgressBar progressbar;
+    private MovieListResponse resultMovies;
+    private MovieDetailResponse.MovieDetailClass movieDetailResponse;
     public static Activity ACTIVITY;
 
 
@@ -62,7 +62,8 @@ public class MovieActivity extends AppCompatActivity implements MovielistFragmen
         bundle.putSerializable("movieDetail", movieDetailResponse);
         MovieDetailFragment movieDetailFragment = new MovieDetailFragment();
         movieDetailFragment.setArguments(bundle);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportFragmentManager().beginTransaction().
                 setCustomAnimations(R.anim.exit_to_right, R.anim.enter_from_left, R.anim.exit_to_right,
                         R.anim.enter_from_left).add(getFrameContainerID(), movieDetailFragment,
@@ -124,6 +125,7 @@ public class MovieActivity extends AppCompatActivity implements MovielistFragmen
         super.onBackPressed();
         rowPositipnClicked = -1;
         getSupportFragmentManager().popBackStack(MovieDetailFragment.class.getSimpleName(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }
 }

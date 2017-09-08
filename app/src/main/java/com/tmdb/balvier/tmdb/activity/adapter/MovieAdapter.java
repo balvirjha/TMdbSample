@@ -38,8 +38,8 @@ import retrofit2.Response;
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder> implements View.OnClickListener, MoviePresenter.MovieDetailResponseCallback {
 
     private List<MovieListResponse.Result> moviesList;
-    RecyclerView recyclerView;
-    Activity context;
+    private RecyclerView recyclerView;
+    private Activity context;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView movieName, releaseDate, movieRating, movieOverview;

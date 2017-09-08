@@ -27,19 +27,9 @@ public class MovieDetailFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private ImageView mViewFlipper;
-    View mRoot;
-    MovieDetailResponse.MovieDetailClass movieDetailResponse;
-    ProgressBar progressbar;
-
-    public MovieDetailFragment() {
-
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
+    private View mRoot;
+    private MovieDetailResponse.MovieDetailClass movieDetailResponse;
+    private ProgressBar progressbar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

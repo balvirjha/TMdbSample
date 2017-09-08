@@ -9,6 +9,7 @@
     tools:context="com.tmdb.balvier.tmdb.activity.fragments.MovieDetailFragment">
 
     <RelativeLayout
+        android:id="@+id/posterLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">
@@ -43,7 +44,6 @@
         android:id="@+id/detailLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/moviePosterFlipper"
         android:layout_marginBottom="25dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
