@@ -59,6 +59,10 @@ public class MovielistFragment extends Fragment {
 
     private void showMovies() {
         movieRecyclerView = (RecyclerView) mRoot.findViewById(R.id.recycler_view);
+        movieRecyclerView.setHasFixedSize(true);
+        movieRecyclerView.setItemViewCacheSize(20);
+        movieRecyclerView.setDrawingCacheEnabled(true);
+        movieRecyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
         mAdapter = new MovieAdapter(resultListMovies, getActivity(), movieRecyclerView);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         movieRecyclerView.setLayoutManager(mLayoutManager);

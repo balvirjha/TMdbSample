@@ -9,7 +9,7 @@ Skilss i used in this project are:
 - Custom theme.
 - Fully custom themed application for pre-lolypop and post as well.
 - Custom themed launcher screen.
-- MVC design pattern.
+- MVP design pattern.
 - Consuming restful services using Retrofit, Gson.
 - Response caching so no need of local db.
 - Image sampling and caching.

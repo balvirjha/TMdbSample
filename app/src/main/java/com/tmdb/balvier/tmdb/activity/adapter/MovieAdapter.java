@@ -53,7 +53,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
             movieOverview = (TextView) view.findViewById(R.id.movieOverview);
             releaseDate = (TextView) view.findViewById(R.id.releaseDate);
             movieRating = (TextView) view.findViewById(R.id.movieRating);
-            moviePosterProgress = (ProgressBar) view.findViewById(R.id.moviePosterProgress);
+            //moviePosterProgress = (ProgressBar) view.findViewById(R.id.moviePosterProgress);
         }
 
     }
@@ -84,7 +84,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
         holder.movieOverview.setTypeface(EasyFonts.robotoThin(context));
         holder.movieRating.setText(movie.getAdult() ? "U/A" : "U");
         holder.movieOverview.setTypeface(EasyFonts.robotoThin(context));
-        holder.moviePosterProgress.setVisibility(View.VISIBLE);
+       // holder.moviePosterProgress.setVisibility(View.VISIBLE);
         String url = RetrofitClient.IMAGE_BASE_URL + movie.getPosterPath();
 
         GlideApp.with(context)
@@ -92,13 +92,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
                 .listener(new RequestListener<Drawable>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                        holder.moviePosterProgress.setVisibility(View.GONE);
+                       // holder.moviePosterProgress.setVisibility(View.GONE);
                         return false;
                     }
 
                     @Override
                     public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                        holder.moviePosterProgress.setVisibility(View.GONE);
+                       // holder.moviePosterProgress.setVisibility(View.GONE);
                         return false;
                     }
                 })
