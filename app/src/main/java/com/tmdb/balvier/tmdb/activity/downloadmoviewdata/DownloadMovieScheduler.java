@@ -26,22 +26,16 @@ public class DownloadMovieScheduler {
         new MovieList().getMovieList(null);
         FirebaseJobDispatcher firebaseJobDispatcher = new FirebaseJobDispatcher(new GooglePlayDriver(ApplicationClass.getApplicationConotext()));
         Job myJob = firebaseJobDispatcher.newJobBuilder()
-                .setService(MovieListDownloadJobService.class) // the JobService that will be called
-                .setTag("my-unique-tag")        // uniquely identifies the job
-                .setRecurring(false)
-                // don't persist past a device reboot
-                .setLifetime(Lifetime.FOREVER)
-                // start between 0 and 60 seconds from now
-                .setTrigger(Trigger.executionWindow(0, 60))
-                // don't overwrite an existing job with the same tag
-                .setReplaceCurrent(false)
-                // retry with exponential backoff
-                .setRetryStrategy(RetryStrategy.DEFAULT_EXPONENTIAL)
-                // constraints that need to be satisfied for the job to run
+                .setService(MovieListDownloadJobService.class)
+                .setTag("movie_list_download_job")
                 .setConstraints(
-                        // only run on an unmetered network
-                        Constraint.ON_ANY_NETWORK
-                ).build();
+                        Constraint.ON_ANY_NETWORK,
+                        Constraint.DEVICE_IDLE
+                ).setRecurring(true)
+                .setTrigger(Trigger.executionWindow(10, 20))
+                .setRetryStrategy(RetryStrategy.DEFAULT_LINEAR)
+                .setLifetime(Lifetime.FOREVER)
+                .build();
 
         firebaseJobDispatcher.mustSchedule(myJob);
     }

@@ -29,14 +29,6 @@
             </intent-filter>
         </service>
 
-        <receiver android:name=".activity.downloadmoviewdata.InstallReceiver">
-            <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-                <action android:name="android.intent.action.PACKAGE_ADDED" />
-                <action android:name="android.intent.action.PACKAGE_INSTALL" />
-            </intent-filter>
-        </receiver>
-
         <activity
             android:name=".activity.LauncherActivity"
             android:theme="@style/AppThemeBase">
@@ -46,6 +38,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

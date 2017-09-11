@@ -25,7 +25,6 @@ import com.tmdb.balvier.tmdb.activity.modal.MovieListResponse;
 import com.tmdb.balvier.tmdb.activity.presenter.MovieDetail;
 import com.tmdb.balvier.tmdb.activity.presenter.MoviePresenter;
 import com.tmdb.balvier.tmdb.activity.restservices.RetrofitClient;
-import com.vstechlab.easyfonts.EasyFonts;
 
 import java.util.List;
 
@@ -78,30 +77,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
         MovieListResponse.Result movie = moviesList.get(position);
         holder.movieName.setText(movie.getTitle());
         holder.movieOverview.setText(movie.getOverview());
-        holder.movieName.setTypeface(EasyFonts.robotoLight(context));
-        holder.movieOverview.setTypeface(EasyFonts.robotoRegular(context));
         holder.releaseDate.setText(movie.getReleaseDate());
-        holder.movieOverview.setTypeface(EasyFonts.robotoThin(context));
         holder.movieRating.setText(movie.getAdult() ? "U/A" : "U");
-        holder.movieOverview.setTypeface(EasyFonts.robotoThin(context));
-       // holder.moviePosterProgress.setVisibility(View.VISIBLE);
         String url = RetrofitClient.IMAGE_BASE_URL + movie.getPosterPath();
 
         GlideApp.with(context)
                 .load(url)
-                .listener(new RequestListener<Drawable>() {
-                    @Override
-                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                       // holder.moviePosterProgress.setVisibility(View.GONE);
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                       // holder.moviePosterProgress.setVisibility(View.GONE);
-                        return false;
-                    }
-                })
                 .centerCrop()
                 .into(holder.moviePoster);
     }

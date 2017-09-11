@@ -1,7 +1,6 @@
 package com.tmdb.balvier.tmdb.activity.presenter;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
@@ -43,18 +42,19 @@ public class MovieList implements MoviePresenter.MovieListRequestCallback, Callb
         Log.e("bvc", "" + response.code());
         Log.e("bvc", "" + response.body());
         if (response.code() == 200 && movieListResponseCallback != null) {
+            if (ApplicationClass.getActivityConotext() != null) {
+                LocalBroadcastManager.getInstance(ApplicationClass.getActivityConotext())
+                        .sendBroadcast(new Intent("custom-event-name").putExtra("data", response.body()));
+            }
             movieListResponseCallback.getMovieListSuccess(response, response.code());
         } else if (movieListResponseCallback != null) {
             movieListResponseCallback.errorGettingMovieList(response.message());
         } else {
-            Log.e("bvc", "bradcast calling");
-            Intent intent = new Intent("com.tmdb.balvier.tmdb.activity.receivingData");
-            // You can also include some extra data.
-            intent.putExtra("message", "This is my message!");
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("movieList", response.body());
-            intent.putExtras(bundle);
-            ApplicationClass.getApplicationConotext().sendBroadcast(intent);
+            if (ApplicationClass.getActivityConotext() != null) {
+                LocalBroadcastManager.getInstance(ApplicationClass.getActivityConotext())
+                        .sendBroadcast(new Intent("custom-event-name").putExtra("data", response.body()));
+                Log.e("bvc", "bradcast calling");
+            }
         }
     }
 

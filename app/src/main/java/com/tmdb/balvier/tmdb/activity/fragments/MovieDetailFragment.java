@@ -21,7 +21,6 @@ import com.tmdb.balvier.tmdb.R;
 import com.tmdb.balvier.tmdb.activity.modal.GlideApp;
 import com.tmdb.balvier.tmdb.activity.modal.MovieDetailResponse;
 import com.tmdb.balvier.tmdb.activity.restservices.RetrofitClient;
-import com.vstechlab.easyfonts.EasyFonts;
 
 public class MovieDetailFragment extends Fragment {
 
@@ -51,8 +50,6 @@ public class MovieDetailFragment extends Fragment {
             progressbar.setVisibility(View.VISIBLE);
             addMoviePostersToViewFlipper();
             ((TextView) mRoot.findViewById(R.id.title)).setText(movieDetailResponse.getTitle());
-            ((TextView) mRoot.findViewById(R.id.title)).setTypeface(EasyFonts.robotoRegular(getActivity()));
-            ((TextView) mRoot.findViewById(R.id.overview)).setTypeface(EasyFonts.robotoThin(getActivity()));
             ((TextView) mRoot.findViewById(R.id.overview)).setText(movieDetailResponse.getOverview());
             float d = (float) ((movieDetailResponse.getPopularity() * 5) / 100);
             ((RatingBar) mRoot.findViewById(R.id.ratings)).setRating(d);

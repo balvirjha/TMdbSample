@@ -1,15 +1,21 @@
 package com.tmdb.balvier.tmdb.activity;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
 import com.tmdb.balvier.tmdb.R;
+import com.tmdb.balvier.tmdb.activity.downloadmoviewdata.DownloadMovieScheduler;
 import com.tmdb.balvier.tmdb.activity.fragments.MovieDetailFragment;
 import com.tmdb.balvier.tmdb.activity.fragments.MovielistFragment;
 import com.tmdb.balvier.tmdb.activity.modal.MovieDetailResponse;
@@ -37,7 +43,7 @@ public class MovieActivity extends AppCompatActivity implements MovielistFragmen
         setContentView(R.layout.activity_movie);
         progressbar = (ProgressBar) findViewById(R.id.progressbar);
         showProgressBar();
-
+        new DownloadMovieScheduler().scheduleJob();
         new MovieList().getMovieList(this);
 
     }
@@ -45,8 +51,20 @@ public class MovieActivity extends AppCompatActivity implements MovielistFragmen
     @Override
     protected void onResume() {
         super.onResume();
+        ApplicationClass.setActivityConotext(this);
+        registerReciever();
         LauncherActivity.killMe(ACTIVITY);
         ACTIVITY = null;
+    }
+
+    void registerReciever() {
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+                mMessageReceiver, new IntentFilter("custom-event-name"));
+    }
+
+    void unregisterReciever() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(
+                mMessageReceiver);
     }
 
     @Override
@@ -128,4 +146,21 @@ public class MovieActivity extends AppCompatActivity implements MovielistFragmen
         if (getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }
+
+    @Override
+    protected void onStop() {
+        unregisterReciever();
+        super.onStop();
+    }
+
+    private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            if (intent.getExtras() != null && intent.getSerializableExtra("data") != null) {
+                Log.e("bvc", "Movie download cache reciever called");
+                resultMovies = (MovieListResponse) intent.getSerializableExtra("data");
+            }
+        }
+    };
 }
