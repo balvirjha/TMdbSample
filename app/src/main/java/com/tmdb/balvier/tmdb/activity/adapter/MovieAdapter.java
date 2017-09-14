@@ -1,8 +1,7 @@
 package com.tmdb.balvier.tmdb.activity.adapter;
 
 import android.app.Activity;
-import android.graphics.drawable.Drawable;
-import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,12 +12,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.tmdb.balvier.tmdb.R;
+import com.tmdb.balvier.tmdb.activity.ApplicationClass;
 import com.tmdb.balvier.tmdb.activity.MovieActivity;
+import com.tmdb.balvier.tmdb.activity.fragments.ProgressLoaderFragment;
 import com.tmdb.balvier.tmdb.activity.modal.GlideApp;
 import com.tmdb.balvier.tmdb.activity.modal.MovieDetailResponse;
 import com.tmdb.balvier.tmdb.activity.modal.MovieListResponse;
@@ -79,12 +76,22 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
         holder.movieOverview.setText(movie.getOverview());
         holder.releaseDate.setText(movie.getReleaseDate());
         holder.movieRating.setText(movie.getAdult() ? "U/A" : "U");
-        String url = RetrofitClient.IMAGE_BASE_URL + movie.getPosterPath();
+        final String url = RetrofitClient.IMAGE_BASE_URL + movie.getPosterPath();
+        if (ApplicationClass.isTablet()) {
+            GlideApp.with(context)
+                    .load(url)
+                    .error(R.drawable.error)
+                    .fitCenter()
+                    .into(holder.moviePoster);
+        }else{
+            GlideApp.with(context)
+                    .load(url)
+                    .error(R.drawable.error)
+                    .centerCrop()
+                    .into(holder.moviePoster);
+        }
 
-        GlideApp.with(context)
-                .load(url)
-                .centerCrop()
-                .into(holder.moviePoster);
+
     }
 
     @Override
@@ -97,20 +104,36 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
         MovieActivity.rowPositipnClicked = itemPosition;
         MovieListResponse.Result item = moviesList.get(itemPosition);
         Toast.makeText(context, item.getTitle(), Toast.LENGTH_LONG).show();
+        showLoaderFragement();
         new MovieDetail().getMovieDetail(this, item.getId().toString());
     }
+
+    ProgressLoaderFragment progressLoaderFragment;
+
+    private void showLoaderFragement() {
+
+        progressLoaderFragment = new ProgressLoaderFragment();
+        progressLoaderFragment.show(((AppCompatActivity) context).getSupportFragmentManager(), ProgressLoaderFragment.class.getSimpleName());
+    }
+
 
     @Override
     public void getMovieDetailSuccess(Response<MovieDetailResponse.MovieDetailClass> response, int responseCode) {
         Log.e("bvc", "getMovieDetailSuccess");
-        ((MovieActivity) context).hideProgressBar();
+        if (progressLoaderFragment != null && progressLoaderFragment.isAdded()) {
+            progressLoaderFragment.dismiss();
+        }
+        // ((MovieActivity) context).hideProgressBar();
         ((MovieActivity) context).onLoadDetailPage(response.body());
     }
 
     @Override
     public void errorGettingMovieDetail(String errormessage) {
         Log.e("bvc", "errorGettingMovieDetail");
-        ((MovieActivity) context).hideProgressBar();
+        if (progressLoaderFragment != null && progressLoaderFragment.isAdded()) {
+            progressLoaderFragment.dismiss();
+        }
+        // ((MovieActivity) context).hideProgressBar();
     }
 
     @Override

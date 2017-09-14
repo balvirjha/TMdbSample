@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClient {
 
     public static final String BASE_URL = "https://api.themoviedb.org/3/";
-    public static final String IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w45";
+    public static final String IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
     public static final String IMAGE_BASE_URL_BACKDROP = "https://image.tmdb.org/t/p/w500";
     private static Retrofit retrofit = null;
     private static Cache cacheStatic;

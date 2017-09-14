@@ -13,11 +13,23 @@
         <item name="android:windowEnterAnimation">@anim/enter_from_left</item>
         <item name="android:windowExitAnimation">@anim/exit_to_right</item>
     </style>
+
     <style name="AppThemeBase" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@drawable/launcherdrawable</item>
+    </style>
+
+    <style name="ProgressbarStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:clipToPadding">true</item>
+        <item name="android:windowEnterAnimation">@anim/enter_from_left</item>
+        <item name="android:windowExitAnimation">@anim/exit_to_right</item>
     </style>
 </resources>
