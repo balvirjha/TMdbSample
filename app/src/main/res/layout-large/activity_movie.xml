@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:weightSum="2"
     tools:context="com.tmdb.balvier.tmdb.activity.MovieActivity">
@@ -12,16 +13,16 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginRight="5dp"
-        android:layout_weight="0.4"
-        android:background="@color/windowBackgroundColor"
+        android:layout_weight=".6"
+        android:background="@android:color/black"
         android:fitsSystemWindows="true" />
 
     <FrameLayout
         android:id="@+id/movieDetailFrame"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1.6"
-        android:background="@color/windowBackgroundColor"
+        android:layout_weight="1.4"
+        android:background="@android:color/black"
         android:fitsSystemWindows="true" />
 
     <ProgressBar
@@ -31,4 +32,5 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:visibility="gone" />
+
 </LinearLayout>

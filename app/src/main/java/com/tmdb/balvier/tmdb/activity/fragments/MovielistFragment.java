@@ -19,6 +19,7 @@ import android.view.ViewStub;
 
 import com.tmdb.balvier.tmdb.R;
 import com.tmdb.balvier.tmdb.activity.ApplicationClass;
+import com.tmdb.balvier.tmdb.activity.MovieActivity;
 import com.tmdb.balvier.tmdb.activity.adapter.MovieAdapter;
 import com.tmdb.balvier.tmdb.activity.modal.MovieListResponse;
 

@@ -2,6 +2,8 @@ package com.tmdb.balvier.tmdb.activity.presenter;
 
 import com.tmdb.balvier.tmdb.activity.modal.MovieDetailResponse;
 import com.tmdb.balvier.tmdb.activity.modal.MovieListResponse;
+import com.tmdb.balvier.tmdb.activity.modal.MovieTrailersResponse;
+import com.tmdb.balvier.tmdb.activity.modal.youtuberesponse.YoutubeResponse;
 
 import retrofit2.Response;
 
@@ -34,5 +36,31 @@ public class MoviePresenter {
 
         public void errorRequestingMovieDetail(String errormessage);
     }
+
+    public interface MovieTrailerRequestCallback {
+        public void getMovieTrailer(MoviePresenter.MovieTrailerResponseCallback movieTrailerResponseCallback, String movie_id);
+
+        public void errorRequestingMovieTrailer(String errormessage);
+    }
+
+    public interface MovieTrailerResponseCallback {
+        public void getMovieTrailerSuccess(Response<MovieTrailersResponse> response, int responseCode);
+
+        public void errorGettingMovieTrailer(String errormessage);
+    }
+
+
+    public interface MovieTrailerGoogleRequestCallback {
+        public void getMovieGoogleTrailer(MoviePresenter.MovieTrailerGoogleResponseCallback movieTrailerGoogleResponseCallback, String movie_id);
+
+        public void errorRequestingMovieGoogleTrailer(String errormessage);
+    }
+
+    public interface MovieTrailerGoogleResponseCallback {
+        public void getMovieGoogleTrailerSuccess(Response<YoutubeResponse> response, int responseCode);
+
+        public void errorGettingMovieGoogleTrailer(String errormessage);
+    }
+
 
 }

@@ -6,4 +6,6 @@
     <color name="windowBackgroundColor">#FFFFFF</color>
     <color name="dividerColor">#BDBDBD</color>
     <color name="textColor">#75757D</color>
+    <color name="unselectedColor">#ffffff</color>
+    <color name="selectedColor">#0288D1</color>
 </resources>

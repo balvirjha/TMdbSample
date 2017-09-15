@@ -26,7 +26,7 @@ public class MovieList implements MoviePresenter.MovieListRequestCallback, Callb
     public void getMovieList(MoviePresenter.MovieListResponseCallback movieListResponseCallback) {
         Log.e("bvc", "getMovieList called ");
         this.movieListResponseCallback = movieListResponseCallback;
-        RetrofitClient.getClient(new Cache(ApplicationClass.getApplicationConotext().getCacheDir(), 10 * 1024 * 1024)).create(MovieAPI.class).getMovieList("b7cd3340a794e5a2f35e3abb820b497f").enqueue(this);
+        RetrofitClient.getClient(new Cache(ApplicationClass.getApplicationConotext().getCacheDir(), 500 * 1024 * 1024)).create(MovieAPI.class).getMovieList("b7cd3340a794e5a2f35e3abb820b497f").enqueue(this);
     }
 
     @Override

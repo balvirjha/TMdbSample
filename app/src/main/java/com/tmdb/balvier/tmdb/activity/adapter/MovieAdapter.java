@@ -38,7 +38,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
     private Activity context;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView movieName, releaseDate, movieRating, movieOverview;
+        TextView movieName, releaseDate, movieRating;
         ImageView moviePoster;
         ProgressBar moviePosterProgress;
 
@@ -46,7 +46,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
             super(view);
             moviePoster = (ImageView) view.findViewById(R.id.moviePoster);
             movieName = (TextView) view.findViewById(R.id.movieName);
-            movieOverview = (TextView) view.findViewById(R.id.movieOverview);
+           // movieOverview = (TextView) view.findViewById(R.id.movieOverview);
             releaseDate = (TextView) view.findViewById(R.id.releaseDate);
             movieRating = (TextView) view.findViewById(R.id.movieRating);
             //moviePosterProgress = (ProgressBar) view.findViewById(R.id.moviePosterProgress);
@@ -73,7 +73,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         MovieListResponse.Result movie = moviesList.get(position);
         holder.movieName.setText(movie.getTitle());
-        holder.movieOverview.setText(movie.getOverview());
+        //holder.movieOverview.setText(movie.getOverview());
         holder.releaseDate.setText(movie.getReleaseDate());
         holder.movieRating.setText(movie.getAdult() ? "U/A" : "U");
         final String url = RetrofitClient.IMAGE_BASE_URL + movie.getPosterPath();

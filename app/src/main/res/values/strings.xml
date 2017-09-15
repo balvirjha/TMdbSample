@@ -2,4 +2,6 @@
     <string name="app_name">TMdb</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
+
 </resources>

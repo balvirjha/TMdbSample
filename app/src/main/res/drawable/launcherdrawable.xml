@@ -5,11 +5,11 @@
     <item android:drawable="@color/colorPrimary" />
     <!-- Your product logo - 144dp color version of your app icon -->
     <item
-        android:width="30dp"
-        android:height="30dp"
+        android:width="250dp"
+        android:height="250dp"
         android:gravity="center">
         <bitmap
             android:gravity="center"
-            android:src="@drawable/tmdbnew" />
+            android:src="@mipmap/tmdbnew" />
     </item>
 </layer-list>

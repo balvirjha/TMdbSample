@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_movies_list"
+        android:enabled="true"
+        android:icon="@drawable/movielist"
+        android:title="Movies"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_movies_trailers"
+        android:enabled="true"
+        android:icon="@drawable/trailers"
+        android:title="Trailers"
+        app:showAsAction="always" />
+</menu>

@@ -7,21 +7,29 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
 import com.tmdb.balvier.tmdb.R;
 import com.tmdb.balvier.tmdb.activity.downloadmoviewdata.DownloadMovieScheduler;
 import com.tmdb.balvier.tmdb.activity.fragments.MovieDetailFragment;
+import com.tmdb.balvier.tmdb.activity.fragments.MovieTrailersFragment;
 import com.tmdb.balvier.tmdb.activity.fragments.MovielistFragment;
 import com.tmdb.balvier.tmdb.activity.modal.MovieDetailResponse;
 import com.tmdb.balvier.tmdb.activity.modal.MovieListResponse;
+import com.tmdb.balvier.tmdb.activity.modal.youtuberesponse.YoutubeResponse;
 import com.tmdb.balvier.tmdb.activity.presenter.MovieList;
 import com.tmdb.balvier.tmdb.activity.presenter.MoviePresenter;
+
+import java.util.List;
 
 import retrofit2.Response;
 
@@ -32,7 +40,6 @@ public class MovieActivity extends AppCompatActivity implements MovielistFragmen
     private MovieListResponse resultMovies;
     private MovieDetailResponse.MovieDetailClass movieDetailResponse;
     public static Activity ACTIVITY;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +78,21 @@ public class MovieActivity extends AppCompatActivity implements MovielistFragmen
     public void onLoadDetailPage(MovieDetailResponse.MovieDetailClass movieDetailResponse) {
         this.movieDetailResponse = movieDetailResponse;
         loadMovieDetailFragment();
+    }
+
+    public void loadMovieTrailerListFragment(List<YoutubeResponse> youtubeResponseList) {
+        onBackPressed();
+        getSupportFragmentManager().executePendingTransactions();
+        MovieTrailersFragment movieTrailersFragment = new MovieTrailersFragment();
+        movieTrailersFragment.setYoutubeResponseList(youtubeResponseList);
+
+        getSupportFragmentManager().beginTransaction().
+                setCustomAnimations(R.anim.exit_to_right, R.anim.enter_from_left, R.anim.exit_to_right,
+                        R.anim.enter_from_left).
+                replace(getFrameContainerID(), movieTrailersFragment,
+                        MovieTrailersFragment.class.getSimpleName()).
+                addToBackStack(MovieDetailFragment.class.getSimpleName()).commit();
+        getSupportFragmentManager().executePendingTransactions();
     }
 
     public static int rowPositipnClicked;

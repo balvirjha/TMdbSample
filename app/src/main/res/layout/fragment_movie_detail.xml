@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/MovieDetailParent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/windowBackgroundColor"
@@ -18,8 +19,19 @@
             android:id="@+id/moviePosterFlipper"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:contentDescription="Poster Image" />
+
+        <ImageView
+            android:id="@+id/movieTrailers"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:tint="#75757d"
             android:contentDescription="Poster Image"
-            android:layout_alignParentTop="true" />
+            android:src="@drawable/ic_play_circle_outline_white_48dp" />
 
         <ProgressBar
             android:id="@+id/progressbar"
@@ -69,6 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:autoSizeTextType="uniform"
             android:ellipsize="end"
             android:padding="15dp"
             android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.

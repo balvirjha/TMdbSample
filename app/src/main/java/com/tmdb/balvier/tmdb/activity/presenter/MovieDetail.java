@@ -22,7 +22,7 @@ public class MovieDetail implements MoviePresenter.MovieDetailRequestCallback, C
     @Override
     public void getMovieDetail(MoviePresenter.MovieDetailResponseCallback movieDetailResponseCallback, String movie_id) {
         this.movieDetailResponseCallback = movieDetailResponseCallback;
-        RetrofitClient.getClient(new Cache(ApplicationClass.getApplicationConotext().getCacheDir(), 10 * 1024 * 1024)).create(MovieAPI.class).getMovieDetails(movie_id, "b7cd3340a794e5a2f35e3abb820b497f").enqueue(this);
+        RetrofitClient.getClient(new Cache(ApplicationClass.getApplicationConotext().getCacheDir(), 500 * 1024 * 1024)).create(MovieAPI.class).getMovieDetails(movie_id, "b7cd3340a794e5a2f35e3abb820b497f").enqueue(this);
     }
 
     @Override
