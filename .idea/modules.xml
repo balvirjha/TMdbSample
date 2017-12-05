@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TMdb.iml" filepath="$PROJECT_DIR$/TMdb.iml" />
+      <module fileurl="file://C:\Users\BalvirJha\StudioProjects\TMdbSample\TMdb.iml" filepath="C:\Users\BalvirJha\StudioProjects\TMdbSample\TMdb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/TMdbSample.iml" filepath="$PROJECT_DIR$/.idea/TMdbSample.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\BalvirJha\StudioProjects\TMdbSample\app\app.iml" filepath="C:\Users\BalvirJha\StudioProjects\TMdbSample\app\app.iml" />
     </modules>
   </component>
 </project>

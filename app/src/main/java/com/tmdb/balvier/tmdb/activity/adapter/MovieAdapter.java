@@ -91,7 +91,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
                     .into(holder.moviePoster);
         }
 
-
     }
 
     @Override

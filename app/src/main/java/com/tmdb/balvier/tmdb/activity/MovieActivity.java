@@ -7,14 +7,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -137,8 +133,10 @@ public class MovieActivity extends AppCompatActivity implements MovielistFragmen
         bundle.putSerializable("movieList", resultMovies);
         MovielistFragment movielistFragment = new MovielistFragment();
         movielistFragment.setArguments(bundle);
-        getSupportFragmentManager().beginTransaction().add(R.id.movieListFrame, movielistFragment, MovielistFragment.class.getSimpleName())
-                .commit();
+        if (!this.isFinishing()) {
+            getSupportFragmentManager().beginTransaction().add(R.id.movieListFrame, movielistFragment, MovielistFragment.class.getSimpleName())
+                    .commit();
+        }
 
     }
 
