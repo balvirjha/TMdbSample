@@ -46,7 +46,7 @@ public class MovieActivity extends AppCompatActivity implements MovielistFragmen
         setContentView(R.layout.activity_movie);
         progressbar = (ProgressBar) findViewById(R.id.progressbar);
         showProgressBar();
-        new DownloadMovieScheduler().scheduleJob();
+        DownloadMovieScheduler.getInstance().scheduleJob();
         new MovieList().getMovieList(this);
 
     }
@@ -58,6 +58,13 @@ public class MovieActivity extends AppCompatActivity implements MovielistFragmen
         registerReciever();
         LauncherActivity.killMe(ACTIVITY);
         ACTIVITY = null;
+    }
+
+    @Override
+    protected void onDestroy() {
+        DownloadMovieScheduler.getInstance().cancellAllJobs();
+        super.onDestroy();
+
     }
 
     void registerReciever() {

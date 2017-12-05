@@ -49,12 +49,6 @@ public class MovieList implements MoviePresenter.MovieListRequestCallback, Callb
             movieListResponseCallback.getMovieListSuccess(response, response.code());
         } else if (movieListResponseCallback != null) {
             movieListResponseCallback.errorGettingMovieList(response.message());
-        } else {
-            if (ApplicationClass.getActivityConotext() != null) {
-                LocalBroadcastManager.getInstance(ApplicationClass.getActivityConotext())
-                        .sendBroadcast(new Intent("custom-event-name").putExtra("data", response.body()));
-                Log.e("bvc", "bradcast calling");
-            }
         }
     }
 
